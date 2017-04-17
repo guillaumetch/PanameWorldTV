@@ -1,0 +1,168 @@
+@keyframes earthRotate{
+  100%{
+    background-position: 250% 50%;
+  }
+}
+
+@keyframes moonRotate{
+  50%{
+    transform: translate(230px,-50%)
+  }
+  70%{
+    transform: translate(200px,-50%) scale(.5);
+  }
+  95%{
+    z-index: -1;
+  }
+}
+
+@font-face {
+  font-family: 'Conv_KOMIKAB_';
+  src: url('fonts/KOMIKAB_.eot');
+  src: local('☺'), url('fonts/KOMIKAB_.woff') format('woff'), url('fonts/KOMIKAB_.ttf') format('truetype'), url('fonts/KOMIKAB_.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Conv_01 Digit';
+  src: url('fonts/01 Digit.eot');
+  src: local('☺'), url('fonts/01 Digit.woff') format('woff'), url('fonts/01 Digit.ttf') format('truetype'), url('fonts/01 Digit.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,body{
+  height: 100%;
+  background: url(http://s3-us-west-2.amazonaws.com/i.cdpn.io/86939.BKJun.1ddac0a8-d1a3-4259-84d7-f59773c308c7.png)no-repeat center center/cover ;
+}
+#text_home,#anim_home{
+  font-family: 'Conv_01 Digit', Sans-Serif;
+  color: white;
+}
+#text_home{
+  font-size: 36px
+}
+.earth-moon-wrap{
+  position: relative;
+}
+.earth{
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: url("img/map.jpg") 50% 50% / cover;
+  animation: earthRotate 5s infinite  linear
+
+}
+.red{
+	color:red;
+}
+
+#red_logo{
+	color:red;
+	font-size:18px;
+}
+
+.moon{
+  position: absolute;
+  left: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: moonRotate 5s infinite linear;
+}
+
+.give-flex{
+  display: flex;
+  height: 87%;
+  justify-content: center;
+  align-items: center;
+}
+
+.give-center{
+  text-align: center;
+}
+
+.give-padding{
+  margin-top : 5%;
+}
+
+@keyframes cascade {
+  0%,
+  25% {
+    opacity: 0.25;
+    transform: translateY(-75%);
+  }
+  25%,
+  50% {
+    opacity: 0.5;
+    transform: translateY(-50%);
+  }
+  50%,
+  75% {
+    opacity: 0.75;
+    transform: translateY(-25%);
+  }
+  75%,
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+h1 {
+  text-transform: uppercase;
+  color: white;
+  font-size: 60px;
+  margin-left: 50px;
+  margin-top: 80px;
+}
+
+span {
+  display: inline-block;
+  opacity: 0;
+  animation-name: cascade;
+  animation-duration: 2.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+
+#anim_home{
+  margin-top:5%;
+}
+
+#btn_home{
+  margin-top: 5%;
+}
+
+#anim_logo{
+  cursor: default;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  background-color: #fff;
+}
+
+#margin-right,.margin-right,input[type=radio]{
+  margin-right: 2%; !important;
+}
+
+#footer_home{
+  border-top:solid 1px red;
+  padding:1%;
+  color:white;
+  background: black;
+}

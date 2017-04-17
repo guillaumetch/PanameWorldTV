@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome to PanamaWorldTv !{% endblock %}</title>
+    {% block stylesheets %}
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/style.css')}}" />
+
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.min.css')}}" />
+
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/css/img/eiffel-tower.png') }}" />
+</head>
+<body>
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-center" id="text_home">
+                <p class="give-padding">BIENVENUE - WELCOME - 欢迎</p>
+                <h1>
+                    <span class="letter1">W</span>
+                    <span class="letter2">W</span>
+                    <span class="letter3">W</span>
+                    <span class="letter4">.</span>
+                    <span class="letter5">PANAMEWORLD</span><span class="red">TV</span>
+                    <span class="letter6">.</span>
+                    <span class="letter6">COM</span>
+                </h1>
+            </div>
+            <div class="col-lg-12" id="anim_home">
+                <div class="give-flex">
+                    <div class="earth-moon-wrap">
+                        <div class="earth"></div>
+                        <div class="moon" id="anim_logo"><strong>PANAMEWORLD<span id="red_logo">TV</span></strong></div>
+                    </div>
+                </div>
+                <div class="col-lg-offset-5 col-lg-2 text-center" id="btn_home">
+                    <a class="btn btn-default" href="{{ path('home') }}">Entrer</a>
+                </div>
+            </div>
+            {#<div class="col-lg-12">
+                <audio src="{{ asset('bundles/app/audio/son_intro.mp3') }}" autoplay loop></audio>
+            </div>#}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}
+</body>
+</html>

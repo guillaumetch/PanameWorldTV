@@ -1,0 +1,58 @@
+{% extends '::base.html.twig'%}
+{% block title %}
+    PanameWorldTV - Liste des vidéos
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-offset-2 col-lg-8 text-center">
+
+                {% if videos is not empty %}
+
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                        <tr>
+                            <th>
+                                Titre
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                URL
+                            </th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for video in videos %}
+                            <tr>
+                                <td>{{ video.titre }}</td>
+                                <td>{{ video.description }}</td>
+                                <td><iframe src="{{ video.url }}" frameborder="0"></iframe></td>
+                                <td>
+                                    <a class="btn btn-warning" href="{{ path('video_update',{'id':video.id}) }}">Modifier</a>
+                                    <a class="btn btn-danger" href="{{ path('video_remove',{'id':video.id}) }}" >Supprimer</a>
+                                </td>
+                            </tr>
+                        {%  endfor%}
+                        </tbody>
+                    </table>
+
+
+
+                {% endif %}
+                <a class="btn btn-primary" href="{{ path('video_add') }}">Ajouter une video</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script type=application/javascript src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/css/js/bootstrap.min.js') }}"></script>
+{% endblock %}

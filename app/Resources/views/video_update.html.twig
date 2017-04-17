@@ -1,0 +1,44 @@
+{% extends '::base.html.twig'%}
+{% block title %}
+    PanameWorldTV - Modification d'une vidéo
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6 text-center">
+                {{ form_start(
+                form_update,
+                {   'method': 'post',
+                    'action': path('video_update',{'id':id}),
+                    'attr': {
+                    'id':'form_create',
+                    'autocomplete':'off'}
+                }
+                ) }}
+                <div class="col-lg-offset-4 col-lg-4">
+                    {{ form_label(form_update.titre,"Titre") }}
+                    {{ form_widget(form_update.titre, {'attr':{'class':'form-control'}})}}
+
+                    {{ form_label(form_update.description,"Description") }}
+                    {{ form_widget(form_update.description, {'attr':{'class':'form-control'}})}}
+
+                    {{ form_label(form_update.url,"URL") }}
+                    {{ form_widget(form_update.url, {'attr':{'class':'form-control'}})}}
+                    <br>
+                    <div class="text-center">
+                        {{ form_widget(form_update.save,{'attr':{'class':'btn btn-info '}})}}
+                        <a class="btn btn-warning" href="{{ path('dashboard_videos') }}">Retour</a>
+                    </div>
+                    <br>
+
+                </div>
+                {{ form_end(form_update) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

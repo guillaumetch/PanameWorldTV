@@ -24,9 +24,9 @@ class Video
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="youtube_id", type="string", length=255)
      */
-    private $url;
+    private $youtube_id;
 
     /**
      * @var string
@@ -54,27 +54,20 @@ class Video
     }
 
     /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return Video
+     * @return string
      */
-    public function setUrl($url)
+    public function getYoutubeId()
     {
-        $this->url = $url;
-
-        return $this;
+        return $this->youtube_id;
     }
 
     /**
-     * Get url
-     *
-     * @return string
+     * @param string $youtube_id
      */
-    public function getUrl()
+    public function setYoutubeId($youtube_id)
     {
-        return $this->url;
+        $youtube_id = 'http://youtube.com/embed/'.$youtube_id;
+        $this->youtube_id = $youtube_id;
     }
 
     /**

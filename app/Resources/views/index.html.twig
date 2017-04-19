@@ -4,9 +4,10 @@
 {% endblock %}
 {% block stylesheets%}
     {{ parent() }}
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome.css')}}" />
 {% endblock %}
 {% block body %}
-    <div class="container-fluid">
+    <div class="container-fluid" id="background">
         <div class="row">
             <div class="col-lg-12 text-center" id="text_home">
                 <h1>
@@ -28,14 +29,13 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li><a href="{{ path('dashboard_videos') }}">Accueil</a></li>
-                            <li><a href="#">Nos Réalisations</a></li>
-                            <li><a href="#">Prestations</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="#realisations">Nos Réalisations</a></li>
+                            <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
-
+            <p class="col-lg-offset-3 col-lg-6 title">À la une</p>
             <div id="myCarousel" class="carousel slide col-lg-offset-3 col-lg-6" data-ride="carousel">
                 <!-- Indicators -->
                 {#<ol class="carousel-indicators">
@@ -48,45 +48,25 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active text-center">
-                        <iframe width="480" height="240" src="http://www.youtube.com/embed/P23FcxgX8j4" frameborder="0"></iframe>
-                        {#<div class="carousel-caption">
-                            <h3>Chania</h3>
-                            <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                        </div>#}
-                    </div>
+                    {% for video in videos %}
+                        {% if loop.index0 == 0 %}
+                            <div class="item active text-center">
+                                <iframe width="480" height="240" src="{{ video.youtubeId }}"></iframe>
+                                {#<div class="carousel-caption">
+                                    <h3>Chania</h3>
 
-                    <div class="item text-center">
-                        <iframe width="480" height="240" src="http://www.youtube.com/embed/ezf16XM7XCc" frameborder="0"></iframe>
-                        {#<div class="carousel-caption">
-                            <h3>Chania</h3>
-                            <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                        </div>#}
-                    </div>
+                                </div>#}
+                            </div>
+                        {% else %}
+                            <div class="item text-center">
+                                <iframe width="480" height="240" src="{{ video.youtubeId }}"></iframe>
+                                {#<div class="carousel-caption">
+                                    <h3>Chania</h3>
 
-                    <div class="item text-center">
-                        <iframe width="480" height="240" src="http://www.youtube.com/embed/-x82h85orHw" frameborder="0"></iframe>
-                        {#<div class="carousel-caption">
-                            <h3>Chania</h3>
-                            <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                        </div>#}
-                    </div>
-
-                    <div class="item text-center">
-                        <iframe width="480" height="240" src="http://www.youtube.com/embed/G8CkOerlsvY" frameborder="0"></iframe>
-                        {#<div class="carousel-caption">
-                            <h3>Chania</h3>
-                            <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                        </div>#}
-                    </div>
-
-                    <div class="item text-center">
-                        <iframe width="480" height="240" src="http://www.youtube.com/embed/9dmWEad4CdU" frameborder="0"></iframe>
-                        {#<div class="carousel-caption">
-                            <h3>Chania</h3>
-                            <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                        </div>#}
-                    </div>
+                                </div>#}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 <br><br>
                 <br><br>
@@ -101,78 +81,59 @@
                 </a>
             </div>
             <div class="col-lg-12">
-                <p>Nos dernières réalisations</p>
-                <div id="products" class="row list-group">
-                    <div class="item  col-xs-4 col-lg-4">
-                        <div class="thumbnail">
-                            <iframe width="480" height="240" src="http://www.youtube.com/embed/P23FcxgX8j4" frameborder="0"></iframe>
-                            <div class="caption">
-                                <h4 class="group inner list-group-item-heading">
-                                    Product title</h4>
-                                <p class="group inner list-group-item-text">
-                                    Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-6">
-                                        <p class="lead">
-                                            $21.000</p>
-                                    </div>
-                                    <div class="col-xs-12 col-md-6">
-                                        <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                                    </div>
-                                </div>
+                <p class="col-lg-offset-2 col-lg-8 title" id="#realisations">Nos réalisations</p>
+                <div class="col-lg-offset-2 col-lg-8">
+                    {% for video in videos %}
+                        <div class="col-lg-4">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="{{ video.youtubeId }}"></iframe>
                             </div>
                         </div>
-                    </div>
-                    <div class="item  col-xs-4 col-lg-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/400x250/000/fff" alt="" />
-                            <div class="caption">
-                                <h4 class="group inner list-group-item-heading">
-                                    Product title</h4>
-                                <p class="group inner list-group-item-text">
-                                    Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-6">
-                                        <p class="lead">
-                                            $21.000</p>
-                                    </div>
-                                    <div class="col-xs-12 col-md-6">
-                                        <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item  col-xs-4 col-lg-4">
-                        <div class="thumbnail">
-                            <img  src="http://placehold.it/400x250/000/fff" alt="" />
-                            <div class="caption">
-                                <h4 class="group inner list-group-item-heading">
-                                    Product title</h4>
-                                <p class="group inner list-group-item-text">
-                                    Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-6">
-                                        <p class="lead">
-                                            $21.000</p>
-                                    </div>
-                                    <div class="col-xs-12 col-md-6">
-                                        <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+
+                    {# <div class="col-lg-4">
+                         <div class="embed-responsive embed-responsive-16by9">
+                             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
+                         </div>
+                     </div>
+                     <div class="col-lg-4">
+                         <div class="embed-responsive embed-responsive-16by9">
+                             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
+                         </div>
+                     </div>
+                     <div class="col-lg-4">
+                         <div class="embed-responsive embed-responsive-16by9">
+                             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
+                         </div>
+                     </div>#}
                 </div>
             </div>
         </div>
-        <footer class="navbar-fixed-bottom" id="footer_home">
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10 text-center" id="contact">
+                <h2>Contact</h2>
+            </div>
+            <div class="col-lg-4 text-center give-padding-2">
+                <a class="container_sm" href="https://www.facebook.com/Panameworldtv/" target="_blank">
+                    <span class="fa fa-inverse fa-facebook-square fa-3x"></span> <p class="social-media">Panameworldtv</p>
+                </a>
+            </div>
+            <div class="col-lg-4 text-center give-padding-2">
+                <a class="container_sm" href="https://twitter.com/panameworldtv" target="_blank">
+                    <span class="fa fa-inverse fa-twitter-square fa-3x"></span> <p class="social-media">@panameworldtv</p>
+                </a>
 
+            </div>
+            <div class="col-lg-4 text-center give-padding-2">
+                <a class="container_sm" href="https://www.instagram.com/panameworldtv/?hl=fr" target="_blank">
+                    <span class="fa fa-inverse fa-instagram fa-3x"></span> <p class="social-media">@panameworldtv</p>
+                </a>
+            </div>
+
+        </div>
+        <footer class="navbar-fixed-bottom" id="footer_home">
             <div class="col-lg-6">
-                <p>Abonnez-vous à notre newsletter pour rester informer de nos réalisations.<br> En cochant la case "Recevoir des offres", vous acceptez de recevoir des offres sur les prestations de PanameWorldTV.</p>
+                <p>Abonnez-vous à notre newsletter pour rester informer de nos réalisations.<br> En cochant la case "Recevoir nos offres", vous acceptez de recevoir des offres sur les prestations de PanameWorldTV.</p>
             </div>
             <div class="col-lg-6">
                 {{ form_start(
@@ -186,19 +147,17 @@
                 }
                 ) }}
                 {{ form_label(form_create.email,"Adresse mail") }}
-                {{ form_widget(form_create.email, {'id':'margin-right','attr':{'class':'form-control'}})}}
+                {{ form_widget(form_create.email, {'attr':{'class':'form-control margin-right'}})}}
 
-                {{ form_label(form_create.offers,"Recevoir des offres") }}
-                {{ form_widget(form_create.offers, {'id':'margin-right','attr':{'class':'form-control'}})}}
+                {{ form_label(form_create.offers,"Recevoir nos offres") }}
+                {{ form_widget(form_create.offers, {'attr':{'class':'form-control margin-right'}})}}
 
 
                 {{ form_widget(form_create.save,{'attr':{'class':'btn btn-danger '}})}}
 
                 {{ form_end(form_create) }}
             </div>
-
         </footer>
-    </div>
     </div>
 {% endblock %}
 {% block javascripts %}

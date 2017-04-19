@@ -14,7 +14,7 @@ class VideoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('url')->add('titre')->add('description')
+        $builder->add('youtubeId')->add('titre')->add('description')
             ->add('save',SubmitType::class,array('label'=>'Enregistrer'));;
     }
     

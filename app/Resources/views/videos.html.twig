@@ -8,13 +8,13 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
+    <div class="container-fluid" id="background">
         <div class="row">
             <div class="col-lg-offset-2 col-lg-8 text-center">
 
                 {% if videos is not empty %}
 
-                    <table class="table table-bordered table-responsive">
+                    <table class="table table-bordered table-responsive" id="white">
                         <thead>
                         <tr>
                             <th>
@@ -24,7 +24,7 @@
                                 Description
                             </th>
                             <th>
-                                URL
+                                Youtube ID
                             </th>
                             <th>Actions</th>
                         </tr>
@@ -34,7 +34,7 @@
                             <tr>
                                 <td>{{ video.titre }}</td>
                                 <td>{{ video.description }}</td>
-                                <td><iframe src="{{ video.url }}" frameborder="0"></iframe></td>
+                                <td><iframe src="{{ video.youtubeId }}" frameborder="0"></iframe></td>
                                 <td>
                                     <a class="btn btn-warning" href="{{ path('video_update',{'id':video.id}) }}">Modifier</a>
                                     <a class="btn btn-danger" href="{{ path('video_remove',{'id':video.id}) }}" >Supprimer</a>

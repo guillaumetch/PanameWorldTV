@@ -26,7 +26,8 @@ class DefaultController extends Controller
      * @Route("/home",name="home")
      */
     public function indexAction(Request $request){
-
+        $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Video');
+        $videos = $repository->findAll();
         $subscriber = new Subscriber();
         $form_create = $this->createForm(SubscriberType::class,$subscriber);
         $form_create->handleRequest($request);
@@ -41,7 +42,7 @@ class DefaultController extends Controller
 
         }
 
-        return $this->render('index.html.twig',array('form_create'=>$form_create->createView()));
+        return $this->render('index.html.twig',array('form_create'=>$form_create->createView(),'videos'=>$videos));
     }
 
     /**

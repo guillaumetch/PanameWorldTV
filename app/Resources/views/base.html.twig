@@ -6,17 +6,17 @@
     {% block stylesheets %}
         <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/style.css')}}" />
 
-        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.min.css')}}" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.css')}}" />
 
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/css/img/eiffel-tower.png') }}" />
 </head>
-<body>
+<body id="background_anim">
 {% block body %}
-    <div class="container-fluid">
+    <div class="container-fluid" id="background_anim">
         <div class="row">
             <div class="col-lg-12 text-center" id="text_home">
-                <p class="give-padding">BIENVENUE - WELCOME - 欢迎</p>
+                <p class="give-margin-top">BIENVENUE - WELCOME - 欢迎</p>
                 <h1>
                     <span class="letter1">W</span>
                     <span class="letter2">W</span>

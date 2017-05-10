@@ -1,0 +1,18 @@
+{% extends ':Front:base.html.twig' %}
+{% block title %}
+    PanameWorldTV - Ajout d'une image
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form_create,{'method':'post','attr': {'id':'form_create','autocomplete':'off'}}) }}
+    {{ form_widget(form_create.image_file,{'attr':{'class':'form-control'}}) }}
+
+    <div class="text-center">
+        {{ form_widget(form_create.save,{'attr':{'class':'btn btn-info '}})}}
+        <a class="btn btn-warning" href="{{ path('dashboard_videos') }}">Retour</a>
+    </div>
+    {{ form_end(form_create) }}
+{% endblock %}

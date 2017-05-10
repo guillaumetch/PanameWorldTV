@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends ':Front:base.html.twig' %}
 {%  block title %}
     PanameWorldTV - Accueil
 {% endblock %}
@@ -9,31 +9,42 @@
 {% block body %}
     <div class="container-fluid" id="background">
         <div class="row">
+            {% block header %}
             <div class="col-lg-12 text-center" id="text_home">
                 <h1>
-                    <span class="letter5">PANAMEWORLD</span><span class="red">TV</span>
+                    <span class="">PANAMEWORLD</span><span class="red">TV</span>
                 </h1>
+                {#<img id="#" src="https://img.youtube.com/vi/ezf16XM7XCc/mqdefault.jpg"/>#}
             </div>
-            <nav class="navbar navbar-inverse col-lg-offset-3 col-lg-6">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#realisations">Nos Réalisations</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
-            </nav>
+            <div class="col-lg-offset-2 col-lg-8">
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="{{ path('home') }}"><span class="glyphicon glyphicon-home"></span></a></li>
+                                <li><a>Événements 📆</a></li>
+                                <li><a href="#realisations">Nos Réalisations 🎞</a></li>
+                                <li><a>Qui sommes-nous ❓</a></li>
+                                <li><a href="{{ path('galerie') }}">Galerie Photo 📷</a></li>
+                                <li><a href="#contact">Contact 📧</a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+
+            {% endblock %}
+
             <p class="col-lg-offset-3 col-lg-6 title">À la une</p>
             <div id="myCarousel" class="carousel slide col-lg-offset-3 col-lg-6" data-ride="carousel">
                 <!-- Indicators -->
@@ -108,16 +119,17 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-lg-offset-1 col-lg-10 text-center" id="contact">
                 <h2>Contact</h2>
             </div>
-            <div class="col-lg-4 text-center give-padding-2">
+            <div class="col-lg-3 text-center give-padding-2">
                 <a class="container_sm" href="https://www.facebook.com/Panameworldtv/" target="_blank">
                     <span class="fa fa-inverse fa-facebook-square fa-3x"></span> <p class="social-media">Panameworldtv</p>
                 </a>
             </div>
-            <div class="col-lg-4 text-center give-padding-2">
+            <div class="col-lg-3 text-center give-padding-2">
                 <a class="container_sm" href="https://twitter.com/panameworldtv" target="_blank">
                     <span class="fa fa-inverse fa-twitter-square fa-3x"></span> <p class="social-media">@panameworldtv</p>
                 </a>
@@ -162,4 +174,11 @@
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('bundles/app/css/js/bootstrap.min.js') }}"></script>
+
+    <script type="text/javascript">
+
+        $('iframe').on('click',function () {
+            alert('ok');
+        });
+    </script>
 {% endblock %}

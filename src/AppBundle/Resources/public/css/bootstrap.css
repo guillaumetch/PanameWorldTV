@@ -4163,12 +4163,24 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
 .navbar {
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .navbar {
     border-radius: 4px;
@@ -6511,6 +6523,18 @@ button.close {
 .modal-footer:after {
   clear: both;
 }
+
+.modal-dialog {
+  width: 70%;
+  height: 50%;
+  padding: 0;
+}
+
+.modal-content {
+  height: auto;
+  border-radius: 0;
+}
+
 .center-block {
   display: block;
   margin-right: auto;
@@ -6753,5 +6777,7 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+
+
 }
 /*# sourceMappingURL=bootstrap.css.map */

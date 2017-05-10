@@ -49,8 +49,8 @@ html{
   font-family: 'Conv_01 Digit', Sans-Serif;
   color: white;
 }
-#text_home{
-  font-size: 36px
+#text_home h1{
+  font-size: 64px;
 }
 .earth-moon-wrap{
   position: relative;
@@ -199,3 +199,4 @@ span {
   color:white;
 }
 #white{color:white;}
+

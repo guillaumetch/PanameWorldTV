@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Image;
 use AppBundle\Entity\Subscriber;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Video;
@@ -17,17 +18,19 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="intro")
      */
-    public function introAction(Request $request) {
+    /*public function introAction(Request $request) {
 
-        return $this->render('base.html.twig');
-    }
+        return $this->render('Front/base.html.twig');
+    }*/
 
     /**
-     * @Route("/home",name="home")
+     * @Route("/",name="home")
      */
     public function indexAction(Request $request){
         $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Video');
+        $repository_gallery = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image');
         $videos = $repository->findAll();
+        $gallery = $repository_gallery->findAll();
         $subscriber = new Subscriber();
         $form_create = $this->createForm(SubscriberType::class,$subscriber);
         $form_create->handleRequest($request);
@@ -42,8 +45,30 @@ class DefaultController extends Controller
 
         }
 
-        return $this->render('index.html.twig',array('form_create'=>$form_create->createView(),'videos'=>$videos));
+        return $this->render('Front/index.html.twig',array('form_create'=>$form_create->createView(),'videos'=>$videos,'gallery'=>$gallery));
     }
+
+    /**
+     * @Route("/galerie", name="galerie")
+     */
+    public function galerieAction(Request $request)
+    {
+        return $this->render('Front/galerie.html.twig');
+    }
+
+    /**
+     * @Route("/getImg", name="get_img")
+     */
+    public function getImgAction(Request $request)
+    {
+        $src = $request->get('src');
+        $img = $this->renderView(':Front:img.html.twig',array('src'=>$src));
+        return new JsonResponse(array('img'=>$img));
+    }
+
+    /****
+     *  DASHBOARD
+     **/
 
     /**
      * @Route("/login", name="login")
@@ -67,14 +92,14 @@ class DefaultController extends Controller
             }
         }
 
-        return $this->render('login.html.twig');
+        return $this->render('Dashboard/login.html.twig');
     }
 
     /**
      * @Route("/dashboard" ,name="dashboard")
      */
     public function dashboardAction(Request $request){
-        return $this->render('dashboard.html.twig');
+        return $this->render('Dashboard/index.html.twig');
     }
 
     /**
@@ -84,7 +109,7 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Video');
         $videos = $repository->findAll();
 
-        return $this->render('videos.html.twig',array('videos'=>$videos));
+        return $this->render('Dashboard/videos.html.twig',array('videos'=>$videos));
     }
 
     /**
@@ -106,7 +131,7 @@ class DefaultController extends Controller
 
         }
 
-        return $this->render('video_add.html.twig',array('form_create'=>$form_create->createView()));
+        return $this->render('Dashboard/video_add.html.twig',array('form_create'=>$form_create->createView()));
     }
 
     /**
@@ -126,7 +151,7 @@ class DefaultController extends Controller
 
         $id = $video->getId();
 
-        return $this->render('video_update.html.twig',array('id'=>$id,'form_update'=>$form_update->createView()));
+        return $this->render('Dashboard/video_update.html.twig',array('id'=>$id,'form_update'=>$form_update->createView()));
 
     }
 
@@ -140,5 +165,75 @@ class DefaultController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('dashboard_videos');
+    }
+
+    /**
+     * @Route("/dashboard/gallery", name="dashboard_gallery")
+     */
+    public function galleryAction(Request $request)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image');
+        $gallery = $repository->findAll();
+
+        return $this->render('Dashboard/gallery.html.twig',array('gallery'=>$gallery));
+    }
+
+    /**
+     * @Route("/dashboard/gallery/add", name="gallery_add")
+     */
+    public function galleryAddAction(Request $request)
+    {
+        $image = new Image();
+
+        $form_create  = $this->createForm('AppBundle\Form\ImageType',$image);
+        $form_create->handleRequest($request);
+
+        if($form_create->isValid()){
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($image);
+            $imageName = $image->getImageName();
+            $name = uniqid();
+            $image->setImageName($name);
+            rename('./gallery/'.$imageName,'./gallery/'.$name);
+            $em->flush();
+            return $this->redirectToRoute('dashboard_gallery');
+
+        }
+        return $this->render('Dashboard/gallery_add.html.twig',array('form_create'=>$form_create->createView()));
+    }
+
+    /**
+     * @Route("/dashboard/gallery/update/{id}", name="gallery_update")
+     */
+    public function galleryUpdateAction(Request $request,Image $image)
+    {
+        $form_update  = $this->createForm('AppBundle\Form\ImageType',$image);
+        $form_update->handleRequest($request);
+
+        if($form_update->isValid()){
+
+            $em = $this->getDoctrine()->getManager();
+            $em->merge($image);
+            $em->flush();
+
+            return $this->redirectToRoute('dashboard_gallery');
+
+        }
+        return $this->render('Dashboard/gallery_update.html.twig',array('form_update'=>$form_update->createView()));
+    }
+
+    /**
+     * @Route("/dashboard/gallery/remove/{id}", name="gallery_remove")
+     */
+    public function galleryRemoveAction(Request $request, Image $image)
+    {
+        $name= $image->getImageName();
+        unlink('./gallery/'.$name);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($image);
+        $em->flush();
+
+        return $this->redirectToRoute('dashboard_gallery');
     }
 }

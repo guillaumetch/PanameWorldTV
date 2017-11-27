@@ -1,0 +1,16 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{%block title%}
+    <title>
+        Geoline - Inscription confirmée
+    </title>
+{% endblock %}
+{% block fos_user_content %}
+   <div class="col-lg-offset-4 col-lg-4 transparent text-center">
+       <br>
+       <p>Inscription confirmée ! Vous êtes maintenant inscrit et connecté.</p>
+       <br>
+       <a class="btn btn-primary" href="{{ path('home') }}">Retour vers l'accueil</a>
+       <br>
+       <br>
+   </div>
+{% endblock fos_user_content %}

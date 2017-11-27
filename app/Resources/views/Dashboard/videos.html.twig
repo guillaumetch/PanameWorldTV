@@ -11,10 +11,10 @@
     <div class="container-fluid" id="background">
         <div class="row">
             <div class="col-lg-offset-2 col-lg-8 text-center">
-
+                <a class="btn btn-primary" href="{{ path('video_add') }}">Ajouter une video</a>
                 {% if videos is not empty %}
 
-                    <table class="table table-bordered table-responsive" id="white">
+                    <table class="table table-bordered table-responsive give-margin-top-2" id="white">
                         <thead>
                         <tr>
                             <th>
@@ -34,7 +34,7 @@
                             <tr>
                                 <td>{{ video.titre }}</td>
                                 <td>{{ video.description }}</td>
-                                <td><iframe src="{{ video.youtubeId }}" frameborder="0"></iframe></td>
+                                <td><iframe src="https://youtube.com/{{ video.youtubeId }}" frameborder="0"></iframe></td>
                                 <td>
                                     <a class="btn btn-warning" href="{{ path('video_update',{'id':video.id}) }}">Modifier</a>
                                     <a class="btn btn-danger" href="{{ path('video_remove',{'id':video.id}) }}" >Supprimer</a>
@@ -47,7 +47,6 @@
 
 
                 {% endif %}
-                <a class="btn btn-primary" href="{{ path('video_add') }}">Ajouter une video</a>
             </div>
         </div>
     </div>

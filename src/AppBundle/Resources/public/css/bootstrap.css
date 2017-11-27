@@ -1120,9 +1120,11 @@ img {
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
+  margin:auto;
   display: block;
-  max-width: 100%;
-  height: auto;
+  max-width: 80%;
+  height: 744px;
+
 }
 .img-rounded {
   border-radius: 6px;
@@ -5805,7 +5807,7 @@ button.list-group-item-danger.active:focus {
 .embed-responsive {
   position: relative;
   display: block;
-  height: 0;
+  height: 220px;
   padding: 0;
   overflow: hidden;
 }
@@ -5813,13 +5815,13 @@ button.list-group-item-danger.active:focus {
 .embed-responsive iframe,
 .embed-responsive embed,
 .embed-responsive object,
-.embed-responsive video {
-  position: absolute;
+.embed-responsive video,iframe{
+
   top: 0;
   bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  left: 25%;
+  width: 100%; /*100*/
+  height: 150%; /*100*/
   border: 0;
 }
 .embed-responsive-16by9 {
@@ -6252,6 +6254,7 @@ button.close {
 .carousel-inner {
   position: relative;
   width: 100%;
+  height: 425px;
   overflow: hidden;
 }
 .carousel-inner > .item {
@@ -6260,6 +6263,7 @@ button.close {
   -webkit-transition: .6s ease-in-out left;
        -o-transition: .6s ease-in-out left;
           transition: .6s ease-in-out left;
+  margin-bottom:2%;
 }
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
@@ -6431,7 +6435,7 @@ button.close {
 .carousel-caption {
   position: absolute;
   right: 15%;
-  bottom: 20px;
+  /*bottom: 20px;*/
   left: 15%;
   z-index: 10;
   padding-top: 20px;
@@ -6439,6 +6443,11 @@ button.close {
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+  border-radius: 10px;
+  background: black;
+  box-shadow: 0px 0px 50px 2px rgba(255, 255, 255, 0.7),
+  0px 0px 175px 7px rgba(255, 0, 0, 0.7) inset;
+  margin-bottom:1%;
 }
 .carousel-caption .btn {
   text-shadow: none;
@@ -6526,7 +6535,7 @@ button.close {
 
 .modal-dialog {
   width: 70%;
-  height: 50%;
+  height: 70%;
   padding: 0;
 }
 

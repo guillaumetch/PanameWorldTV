@@ -30,22 +30,11 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Video');
         $repository_gallery = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image');
         $videos = $repository->findAll();
+        $videos = array_reverse($videos);
         $gallery = $repository_gallery->findAll();
-        $subscriber = new Subscriber();
-        $form_create = $this->createForm(SubscriberType::class,$subscriber);
-        $form_create->handleRequest($request);
+        
 
-        if($request->isMethod('POST')){
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($subscriber);
-            $em->flush();
-
-            return $this->redirectToRoute('home');
-
-        }
-
-        return $this->render('Front/index.html.twig',array('form_create'=>$form_create->createView(),'videos'=>$videos,'gallery'=>$gallery));
+        return $this->render('Front/index.html.twig',array('videos'=>$videos,'gallery'=>$gallery));
     }
 
     /**
@@ -69,31 +58,6 @@ class DefaultController extends Controller
     /****
      *  DASHBOARD
      **/
-
-    /**
-     * @Route("/login", name="login")
-     */
-    public function loginAction(Request $request){
-
-        if($request->isMethod('POST'))
-        {
-            $password = $request->get('password');
-            $password = hash('sha512',$password);
-
-            $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:User');
-
-            $finder = $repository->findBy(array('password'=>$password));
-
-            if(empty($finder)){
-                return $this->redirectToRoute('login');
-            }
-            else{
-                return $this->redirectToRoute('dashboard');
-            }
-        }
-
-        return $this->render('Dashboard/login.html.twig');
-    }
 
     /**
      * @Route("/dashboard" ,name="dashboard")

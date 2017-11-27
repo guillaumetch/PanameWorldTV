@@ -36,6 +36,10 @@ html{
   height: 100%;
 }
 
+body{
+  color:white !important;
+}
+
 
 #background_anim{
   background: url('img/background.png')round center center/cover ;
@@ -94,6 +98,10 @@ html{
 
 .give-margin-top-5{
   margin-top : 5%;
+}
+
+.give-margin-top-2{
+  margin-top : 2%;
 }
 
 .give-padding-2{

@@ -69,6 +69,17 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    registration:
+        form:
+            type: AppBundle\Form\UserType
+    from_email:
+        address: "noreply@yourcompany.com"
+        sender_name: "No Reply"
+
 #Gaufrette
 knp_gaufrette:
     stream_wrapper: ~
@@ -76,7 +87,7 @@ knp_gaufrette:
     adapters:
         image_adapter:
             local:
-                directory: %kernel.root_dir%/../web/gallery
+                directory: "%kernel.root_dir%/../web/gallery"
 
     filesystems:
         image_fs:

@@ -66,7 +66,6 @@ class Video
      */
     public function setYoutubeId($youtube_id)
     {
-        $youtube_id = 'http://youtube.com/embed/'.$youtube_id;
         $this->youtube_id = $youtube_id;
     }
 

@@ -5,105 +5,117 @@
 {% block stylesheets%}
     {{ parent() }}
     <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome.css')}}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/jquery.dataTables.min.css')}}" />
 {% endblock %}
 {% block body %}
     <div class="container-fluid" id="background">
         <div class="row">
             {% block header %}
-            <div class="col-lg-12 text-center" id="text_home">
-                <h1>
-                    <span class="">PANAMEWORLD</span><span class="red">TV</span>
-                </h1>
-                {#<img id="#" src="https://img.youtube.com/vi/ezf16XM7XCc/mqdefault.jpg"/>#}
-            </div>
-            <div class="col-lg-offset-1 col-lg-10">
-                <nav class="navbar navbar-inverse">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <li><a href="{{ path('home') }}"><span class="glyphicon glyphicon-home"></span></a></li>
-                                <li><a href="#contact"> Chroniques d'Aliya Stars ⭐👩🏾‍🎤</a> </li>
-                                <li><a>Événements 📆</a></li>
-                                <li><a href="#realisations">Nos Réalisations 🎞</a></li>
-                                <li><a>Qui sommes-nous ❓</a></li>
-                                <li><a href="{{ path('galerie') }}">Galerie Photo 📷</a></li>
-                                <li><a href="#contact">Contact 📧</a></li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
-            </div>
-
-            {% endblock %}
-
-            <p class="col-lg-offset-3 col-lg-6 title">À la une</p>
-            <div id="myCarousel" class="carousel slide col-lg-offset-3 col-lg-6" data-ride="carousel">
-                <!-- Indicators -->
-                {#<ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                    <li data-target="#myCarousel" data-slide-to="4"></li>
-                </ol>#}
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    {% for video in videos %}
-                        {% if loop.index0 == 0 %}
-                            <div class="item active text-center">
-                                <iframe width="480" height="240" src="{{ video.youtubeId }}"></iframe>
-                                {#<div class="carousel-caption">
-                                    <h3>Chania</h3>
-
-                                </div>#}
-                            </div>
-                        {% else %}
-                            <div class="item text-center">
-                                <iframe width="480" height="240" src="{{ video.youtubeId }}"></iframe>
-                                {#<div class="carousel-caption">
-                                    <h3>Chania</h3>
-
-                                </div>#}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                <div class="col-lg-12 text-center" id="text_home">
+                    <h1>
+                        <span class="">PANAMEWORLD</span><span class="red">TV</span>
+                    </h1>
                 </div>
-                <br><br>
-                <br><br>
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-            <div class="col-lg-12">
-                <p class="col-lg-offset-2 col-lg-8 title" id="#realisations">Nos réalisations</p>
-                <div class="col-lg-offset-2 col-lg-8">
-                    {% for video in videos %}
-                        <div class="col-lg-4">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="{{ video.youtubeId }}"></iframe>
+                <div class="col-lg-offset-1 col-lg-10 give-margin-top-2">
+                    <nav class="navbar navbar-inverse">
+                        <div class="container-fluid">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
                             </div>
-                        </div>
-                    {% endfor %}
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{{ path('home') }}"><span class="glyphicon glyphicon-home"></span></a></li>
+                                    <li><a href="#contact"> Chroniques d'Aliya Stars ⭐👩🏾‍🎤</a> </li>
+                                    <li><a>Événements 📆</a></li>
+                                    <li><a href="#realisations">Nos Réalisations 🎞</a></li>
+                                    <li><a>Qui sommes-nous ❓</a></li>
+                                    <li><a href="{{ path('galerie') }}">Galerie Photo 📷</a></li>
+                                    <li><a href="#contact">Contact 📧</a></li>
+                                </ul>
+                            </div><!-- /.navbar-collapse -->
+                        </div><!-- /.container-fluid -->
+                    </nav>
+                </div>
+            {% endblock %}
+        </div>
+        <div class="row give-margin-top-2">
+            <div class="col-lg-12">
+                <p class="col-lg-offset-2 col-lg-8 title give-padding-2s">À la une</p>
+                <div id="myCarousel" class="carousel slide col-lg-12w   " data-ride="carousel">
+                    <!-- Indicators -->
+                    {#<ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                        <li data-target="#myCarousel" data-slide-to="4"></li>
+                    </ol>#}
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        {% for video in videos %}
+                            {% if loop.index0 == 0 %}
+                                <div class="item active text-center" >
+                                    <div class="col-lg-offset-3 col-lg-6 text-center">
+                                        <img src="https://img.youtube.com/vi/{{ video.youtubeId }}/hqdefault.jpg"/>
+                                        <h4>{{ video.titre }}</h4>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="item text-center" >
+                                    <div class="col-lg-offset-3 col-lg-6 text-center">
+                                        <img src="https://img.youtube.com/vi/{{ video.youtubeId }}/hqdefault.jpg"/>
+                                        <h4>{{ video.titre }}</h4>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12 give-margin-top-5">
+                <p class="col-lg-offset-2 col-lg-8 title" id="#realisations">Nos réalisations</p>
+                <div class="col-lg-offset-2 col-lg-8">
+
+                    {% for video in videos %}
+                        <div class="col-lg-4 text-center give-padding-2">
+                            <img class="img-thumbnail" src="https://img.youtube.com/vi/{{ video.youtubeId }}/hqdefault.jpg"/>
+                            <button class="btn btn-success give-margin-top-2" data-yt="{{ video.youtubeId }}"><span class="glyphicon glyphicon-play"></span></button>
+                        </div>
+                    {% endfor %}
+
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <iframe id="frame" allowfullscreen="allowfullscreen" src="" width="100%" height="100%">
+                            </iframe>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="row">
             <div class="col-lg-offset-1 col-lg-10 text-center" id="contact">
@@ -118,7 +130,6 @@
                 <a class="container_sm" href="https://twitter.com/panameworldtv" target="_blank">
                     <span class="fa fa-inverse fa-twitter-square fa-3x"></span> <p class="social-media">@panameworldtv</p>
                 </a>
-
             </div>
             <div class="col-lg-3 text-center give-padding-2">
                 <a class="container_sm" href="https://www.instagram.com/panameworldtv/?hl=fr" target="_blank">
@@ -126,60 +137,45 @@
                 </a>
             </div>
             <div class="col-lg-3 text-center give-padding-2">
-                <span class="fa fa-inverse fa-phone fa-3x"></span> <p class="social-media"> +33 7 515 137 37</p>
+                <span class="fa fa-inverse fa-phone-square fa-3x"></span> <p class="social-media"> +33 7 515 137 37</p>
             </div>
-
         </div>
-        <footer class="navbar-fixed-bottom" id="footer_home">
-            <div class="col-lg-6">
-                <p>Abonnez-vous à notre newsletter pour rester informer de nos réalisations.<br> En cochant la case "Recevoir nos offres", vous acceptez de recevoir des offres sur les prestations de PanameWorldTV.</p>
-            </div>
-            <div class="col-lg-6">
-                {{ form_start(
-                form_create,
-                {   'method': 'post',
-                    'action': path('home'),
-                    'attr': {
-                    'class':'form-inline',
-                    'id':'form_create',
-                    'autocomplete':'off'}
-                }
-                ) }}
-                {{ form_label(form_create.email,"Adresse mail") }}
-                {{ form_widget(form_create.email, {'attr':{'class':'form-control margin-right'}})}}
-
-                {{ form_label(form_create.offers,"Recevoir nos offres") }}
-                {{ form_widget(form_create.offers, {'attr':{'class':'form-control margin-right'}})}}
-
-
-                {{ form_widget(form_create.save,{'attr':{'class':'btn btn-danger '}})}}
-
-                {{ form_end(form_create) }}
-            </div>
-        </footer>
     </div>
 {% endblock %}
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script type="text/javascript" src="{{ asset('bundles/app/css/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/jquery.dataTables.min.js') }}"></script>
 
     <script type="text/javascript">
-
-        $('iframe').on('click',function () {
-            alert('ok');
-        });
-
-
-    </script>
-
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-99115279-1', 'auto');
         ga('send', 'pageview');
+
+        $(document).ready(function(){
+
+            $(".btn.btn-success").click(function () {
+                var id = $(this).data('yt');
+                $('#myModal').modal('show');
+                $("#frame").attr("src", "https://www.youtube.com/embed/"+id+"?rel=0&autoplay=1");
+            });
+
+            $('#myModal').on('hidden.bs.modal', function () {
+                $("#frame").attr("src", "");
+            })
+        });
 
     </script>
 {% endblock %}
